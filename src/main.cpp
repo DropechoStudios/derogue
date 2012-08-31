@@ -1,14 +1,13 @@
-#include "dungeonGenerator.hpp"
+#include "PlayerComponent.hpp"
 #include "engine.hpp"
 
 using namespace derogue;
-using namespace dungeon;
 
 int main(){
 
 Engine* engine = new Engine();
 
-engine->RegisterComponent<DungeonGenerator>();
+engine->RegisterComponent<PlayerComponent>();
 
 engine->Init();
 engine->Run();
