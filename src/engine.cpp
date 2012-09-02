@@ -9,6 +9,7 @@ void Engine::Init()
     {
         (*it)->Init();
     }
+
     TCODSystem::setFps(25);
 }
 

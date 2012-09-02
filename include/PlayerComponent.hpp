@@ -12,10 +12,12 @@ private:
     int _playY;
 
 public:
+
     virtual void Init() {
         _playX = WINDOW_X / 2;
         _playY = WINDOW_Y / 2;
     };
+
     virtual void Run() {
         TCOD_key_t key = TCODConsole::waitForKeypress(true);
         //TCOD_key_t key = TCODConsole::checkForKeypress();

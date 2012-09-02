@@ -12,6 +12,9 @@
 !examples/**/lib/**/*
 !examples/**/bin/**/*
 
+!lib/*
+!/lib/**/*
+
 #ignore test result files
 tests/bin/*.xml
 

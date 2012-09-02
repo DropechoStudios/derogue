@@ -1,6 +1,6 @@
 #include "PlayerComponent.hpp"
 #include "engine.hpp"
-
+#include <cstdio>
 using namespace derogue;
 
 int main(){
