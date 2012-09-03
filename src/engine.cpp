@@ -16,7 +16,7 @@ void Engine::Init()
 void Engine::Run()
 {
     TCODConsole::initRoot(WINDOW_X,WINDOW_Y, "DeRogue v0.1", false);
-    TCODConsole::root->setBackgroundColor(TCODColor::blue);
+//    TCODConsole::root->setBackColor(TCODColor::blue);
 
     while(true){
         TCODConsole::root->clear();

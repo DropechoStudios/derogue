@@ -38,10 +38,15 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++0x" />
 			<Add option="-Wall" />
 			<Add directory="..\include" />
 			<Add directory="..\include\libtcod" />
 		</Compiler>
+		<Unit filename="..\include\IEngineComponent.hpp" />
+		<Unit filename="..\include\PlayerComponent.hpp" />
+		<Unit filename="..\include\defines.hpp" />
+		<Unit filename="..\include\dungeonGenerator.hpp" />
 		<Unit filename="..\include\engine.hpp" />
 		<Unit filename="..\src\engine.cpp" />
 		<Unit filename="..\src\main.cpp" />
