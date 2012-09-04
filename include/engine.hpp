@@ -3,7 +3,8 @@
 #include "Defines.hpp"
 #include "IEngineComponent.hpp"
 
-#include <vector>
+#include "stlextensions.hpp"
+
 namespace derogue {
 
 class Engine{
@@ -37,14 +38,14 @@ void Engine::RegisterComponent()
 template<class T>
 T* Engine::GetComponent()
 {
-    for(auto it = _components.begin(); it != _components.end(); it++)
+    for_each(_components, [](IEngineComponent* component)
     {
-        auto component = dynamic_cast<T*>((*it));
-        if(component)
+        auto castComp = dynamic_cast<T*>(component);
+        if(castComp)
         {
-            return component;
+            return castComp;
         }
-    }
+    });
     return NULL;
 }
 } //end namespace derogue

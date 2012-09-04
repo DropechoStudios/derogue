@@ -19,12 +19,7 @@ public:
     };
 
     virtual void Run() {
-        TCOD_key_t key = TCODConsole::waitForKeypress(true);
-        //TCOD_key_t key = TCODConsole::checkForKeypress();
-        //if(key.vk == TCODK_ESCAPE)
-        //{
-        //   break;
-        //}
+        TCOD_key_t key = TCODConsole::checkForKeypress();
 
         switch(key.c){
             case 'w': _playY--; break; // up
