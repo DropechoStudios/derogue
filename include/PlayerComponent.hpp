@@ -1,38 +1,47 @@
 #pragma once
-#include "libtcod.hpp"
-#include "Defines.hpp"
-#include "IEngineComponent.hpp"
+#ifndef PLAYERCOMPONENT_H
+#define PLAYERCOMPONENT_H
+
+#include "WorldComponent.hpp"
+#include "Engine.hpp"
 
 namespace derogue {
 
 class PlayerComponent : public IEngineComponent
 {
 private:
-    int _playX;
-    int _playY;
+    Player* _player;
+    TCODMap * _map;
 
 public:
+    PlayerComponent()
+    {
+        _player = new Player();
+        _player->X = WINDOW_X/2;
+        _player->Y = WINDOW_X/2;
+    }
 
-    virtual void Init() {
-        _playX = WINDOW_X / 2;
-        _playY = WINDOW_Y / 2;
+    virtual Player* GetPlayer(){
+        return _player;
+    }
+
+    virtual void Init(Engine* engine) {
+        _map = engine->GetComponent<WorldComponent>()->GetMap();
     };
 
-    virtual void Run() {
-        TCOD_key_t key = TCODConsole::checkForKeypress();
+    virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse) {
 
-        switch(key.c){
-            case 'w': _playY--; break; // up
-            case 'a': _playX--; break; // left
-            case 's': _playY++; break; // down
-            case 'd': _playX++; break; // right
+        switch(key->c){
+            case 'w': _map->isWalkable(_player->X, _player->Y - 1) ? _player->Y-- : 0; break; // up
+            case 'a': _map->isWalkable(_player->X - 1, _player->Y) ? _player->X-- : 0; break; // left
+            case 's': _map->isWalkable(_player->X, _player->Y + 1) ? _player->Y++ : 0; break; // down
+            case 'd': _map->isWalkable(_player->X + 1, _player->Y) ? _player->X++ : 0; break; // right
         }
 
-        TCODConsole::root->putChar(_playX,_playY,'@');
+        _map->computeFov(_player->X,_player->Y, 10);
+        TCODConsole::root->putChar(_player->X,_player->Y,'@');
     };
 };
 
 } //end namespace derogue
-
-
-
+#endif

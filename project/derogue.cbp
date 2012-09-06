@@ -44,12 +44,16 @@
 			<Add directory="..\include" />
 			<Add directory="..\include\libtcod" />
 		</Compiler>
+		<Unit filename="..\include\DungeonComponent.hpp" />
 		<Unit filename="..\include\IEngineComponent.hpp" />
+		<Unit filename="..\include\PathfindingComponent.hpp" />
 		<Unit filename="..\include\PlayerComponent.hpp" />
+		<Unit filename="..\include\WorldComponent.hpp" />
 		<Unit filename="..\include\defines.hpp" />
 		<Unit filename="..\include\dungeonGenerator.hpp" />
 		<Unit filename="..\include\engine.hpp" />
 		<Unit filename="..\include\stlextensions.hpp" />
+		<Unit filename="..\src\DungeonGenerator.cpp" />
 		<Unit filename="..\src\engine.cpp" />
 		<Unit filename="..\src\main.cpp" />
 		<Extensions>

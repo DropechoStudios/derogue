@@ -1,25 +1,27 @@
 #pragma once
 #include "libtcod.hpp"
+#include "libtcod.hpp"
+#include "defines.hpp"
 #include "IEngineComponent.hpp"
 
 namespace derogue {
 namespace dungeon {
 
-//class BspListener : public ITCODBspCallback {
-//public :
-//	bool visitNode(TCODBsp *node, void *userData) {
-//        TCODConsole::root->rect(node->x,node->y, node->w, node->h, true);
-//		return true;
-//	}
-//};
+class DungeonGenerator : public ITCODBspCallback {
 
-class DungeonGenerator : public IEngineComponent
-{
-public:
-    virtual void Init() {};
-    virtual void Run() {};
+private:
+    TCODMap *_map;
+
+    bool BuildWalls(TCODBsp *node,int x,int y);
+    void BuildDoors(TCODBsp *node,int x,int y);
+
+public :
+    bool visitNode(TCODBsp *node, void *userData);
+
+    DungeonGenerator(TCODMap* map){
+        _map = map;
+    }
 };
-
 } //end namespace dungeon
 } //end namespace derogue
 

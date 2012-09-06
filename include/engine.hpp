@@ -1,6 +1,9 @@
 #pragma once
+#ifndef ENGINE_H
+#define ENGINE_H
+
 #include "libtcod.hpp"
-#include "Defines.hpp"
+#include "defines.hpp"
 #include "IEngineComponent.hpp"
 
 #include "stlextensions.hpp"
@@ -24,11 +27,13 @@ public:
 template<class T>
 void Engine::RegisterComponent()
 {
-    if(GetComponent<T>())
+    if(GetComponent<T>() != NULL)
     {
         return;
     }
-    IEngineComponent* component = dynamic_cast<IEngineComponent*>(new T());
+
+    GetComponent<T>();
+    IEngineComponent* component = static_cast<IEngineComponent*>(new T());
     if(component)
     {
         _components.push_back(component);
@@ -38,14 +43,13 @@ void Engine::RegisterComponent()
 template<class T>
 T* Engine::GetComponent()
 {
-    for_each(_components, [](IEngineComponent* component)
-    {
-        auto castComp = dynamic_cast<T*>(component);
-        if(castComp)
-        {
-            return castComp;
-        }
-    });
+    IEngineComponent* comp = filter(_components,[](IEngineComponent* component){ return dynamic_cast<T*>(component) != NULL; });
+    if(comp){
+        return static_cast<T*>(comp);
+    }
     return NULL;
 }
+
 } //end namespace derogue
+
+#endif

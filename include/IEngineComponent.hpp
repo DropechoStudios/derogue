@@ -1,11 +1,19 @@
 #pragma once
+#ifndef IENGINECOMPONENT_H
+#define IENGINECOMPONENT_H
+
+#include "libtcod.hpp"
 
 namespace derogue {
 
+class Engine; //Forward declaration.
+
 class IEngineComponent{
 public:
-    virtual void Init() = 0;
-    virtual void Run() = 0;
+    virtual void Init(Engine * engine) = 0;
+    virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse) = 0;
 };
 
 }
+
+#endif
