@@ -34,14 +34,14 @@ class PathfindingComponent : public IEngineComponent{
             return _paths[pathId];
         }
 
-        void DrawPath(int pathId)
+        void DrawPath(int pathId, TCODColor color =  TCODColor::copper)
         {
             auto path = _paths[pathId];
             int pathx, pathy;
             for(int i = 0; i < path->size(); i++)
             {
                 path->get(i,&pathx,&pathy);
-                TCODConsole::root->setCharBackground(pathx,pathy,TCODColor::copper);
+                TCODConsole::root->setCharBackground(pathx,pathy,color);
             }
         }
 };

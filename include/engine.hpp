@@ -13,6 +13,9 @@ namespace derogue {
 class Engine{
 private:
     std::vector<IEngineComponent*> _components;
+
+    TCOD_key_t _key;
+    TCOD_mouse_t _mouse;
 public:
     template<class T>
     void RegisterComponent();

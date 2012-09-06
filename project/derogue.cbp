@@ -46,6 +46,7 @@
 		</Compiler>
 		<Unit filename="..\include\DungeonComponent.hpp" />
 		<Unit filename="..\include\IEngineComponent.hpp" />
+		<Unit filename="..\include\LightingComponent.hpp" />
 		<Unit filename="..\include\PathfindingComponent.hpp" />
 		<Unit filename="..\include\PlayerComponent.hpp" />
 		<Unit filename="..\include\WorldComponent.hpp" />
