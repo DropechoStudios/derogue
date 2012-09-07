@@ -4,7 +4,7 @@
 
 #include "libtcod.hpp"
 #include "defines.hpp"
-#include "IEngineComponent.hpp"
+#include "Components/IEngineComponent.hpp"
 
 #include "stlextensions.hpp"
 

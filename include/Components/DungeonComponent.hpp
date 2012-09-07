@@ -18,7 +18,7 @@ public:
     DungeonComponent()
     {
         _dungeon = new TCODBsp(0,0,WINDOW_X,WINDOW_Y);
-        _dungeon->splitRecursive(NULL,6,7,7,1.5f,1.5f);
+        _dungeon->splitRecursive(NULL,7,3,3,1.5f,1.5f);
     }
 
     virtual void Init(Engine* engine) {

@@ -1,6 +1,6 @@
-#include "WorldComponent.hpp"
-#include "PlayerComponent.hpp"
-#include "PathfindingComponent.hpp"
+#include "Components/WorldComponent.hpp"
+#include "Components/PlayerComponent.hpp"
+#include "Components/PathfindingComponent.hpp"
 #include "engine.hpp"
 
 using namespace derogue;
@@ -23,12 +23,3 @@ void Engine::Run()
         TCODConsole::flush();
     }
 }
-
-
-/*
-pathFinder->ComputePath(1,player->X,player->Y,_mouse.cx,_mouse.cy);
-pathFinder->DrawPath(1);
-
-pathFinder->ComputePath(2,0,0,_mouse.cx,_mouse.cy);
-pathFinder->DrawPath(2,TCODColor::darkerAmber);
-*/

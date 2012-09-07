@@ -2,7 +2,7 @@
 #include "libtcod.hpp"
 #include "libtcod.hpp"
 #include "defines.hpp"
-#include "IEngineComponent.hpp"
+#include "Components/IEngineComponent.hpp"
 
 namespace derogue {
 namespace dungeon {
@@ -12,8 +12,8 @@ class DungeonGenerator : public ITCODBspCallback {
 private:
     TCODMap *_map;
 
-    bool BuildWalls(TCODBsp *node,int x,int y);
-    void BuildDoors(TCODBsp *node,int x,int y);
+    bool BuildWalls(TCODBsp *node);
+    bool BuildDoors(TCODBsp *node);
 
 public :
     bool visitNode(TCODBsp *node, void *userData);

@@ -1,7 +1,7 @@
-#include "PlayerComponent.hpp"
-#include "DungeonComponent.hpp"
-#include "PathfindingComponent.hpp"
-#include "LightingComponent.hpp"
+#include "Components/PlayerComponent.hpp"
+#include "Components/DungeonComponent.hpp"
+#include "Components/PathfindingComponent.hpp"
+#include "Components/LightingComponent.hpp"
 #include "engine.hpp"
 
 using namespace derogue;
