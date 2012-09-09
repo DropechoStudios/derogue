@@ -34,6 +34,30 @@ class PathfindingComponent : public IEngineComponent{
             return _paths[pathId];
         }
 
+        bool ComputeAndWalkPath(int pathId, int* x, int* y, int dx, int dy, int stopping = 1, bool mustBeVisible = false, int sightRadius = 1)
+        {
+            auto isPathable = ComputePath(pathId,*x,*y,dx,dy);
+            auto inRange = GetPath(pathId)->size() <= stopping;
+            auto isVisible = true;
+
+            if(isPathable)
+            {
+                if(mustBeVisible)
+                {
+                    _map->computeFov(*x,*y,sightRadius);
+                    isVisible = _map->isInFov(dx,dy);
+                }
+
+                if(!inRange || !isVisible)
+                {
+                    GetPath(pathId)->walk(x,y,false);
+                }
+            }
+
+
+            return isPathable;
+        }
+
         void DrawPath(int pathId, TCODColor color =  TCODColor::copper)
         {
             auto path = _paths[pathId];

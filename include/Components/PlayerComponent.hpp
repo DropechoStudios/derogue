@@ -17,8 +17,6 @@ public:
     PlayerComponent()
     {
         _player = new Player();
-        _player->X = WINDOW_X/2;
-        _player->Y = WINDOW_X/2;
     }
 
     virtual Player* GetPlayer(){
@@ -27,6 +25,12 @@ public:
 
     virtual void Init(Engine* engine) {
         _map = engine->GetComponent<WorldComponent>()->GetMap();
+
+        while(!_map->isWalkable(_player->X,_player->Y))
+        {
+            _player->X = rand() % WINDOW_X;
+            _player->Y = rand() % WINDOW_Y;
+        }
     };
 
     virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse) {
@@ -38,7 +42,6 @@ public:
             case 'd': _map->isWalkable(_player->X + 1, _player->Y) ? _player->X++ : 0; break; // right
         }
 
-        _map->computeFov(_player->X,_player->Y, 10);
         TCODConsole::root->putChar(_player->X,_player->Y,'@');
     };
 };
