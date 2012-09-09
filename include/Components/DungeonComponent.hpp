@@ -3,6 +3,7 @@
 #define DUNGEONCOMPONENT_H
 
 #include "DungeonGenerators/BasicRoomGenerator.hpp"
+#include "DungeonGenerators/HallGenerator.hpp"
 #include "IEngineComponent.hpp"
 
 namespace derogue {
@@ -13,7 +14,6 @@ private:
     TCODBsp *_dungeon;
     TCODMap *_map;
 
-    dungeon::BasicRoomGenerator* _generator;
 public:
     DungeonComponent()
     {
@@ -24,8 +24,11 @@ public:
     virtual void Init(Engine* engine) {
         _map = engine->GetComponent<WorldComponent>()->GetMap();
 
-        _generator = new dungeon::BasicRoomGenerator(_map,1,4);
-        _dungeon->traversePostOrder(_generator,NULL);
+        auto roomgenerator = new dungeon::BasicRoomGenerator(_map,1,2);
+        _dungeon->traversePostOrder(roomgenerator,NULL);
+
+        auto hallgenerator = new dungeon::HallGenerator(_map,1,2);
+        _dungeon->traverseInvertedLevelOrder(hallgenerator,NULL);
     };
 
     virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse) {

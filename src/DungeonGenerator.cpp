@@ -9,7 +9,7 @@ void BasicRoomGenerator::BuildWalls(TCODBsp *node){
     auto maxX = node->x + node->w - _wallThickness;
     auto maxY = node->y + node->h - _wallThickness;
 
-    bool hasRoom = node->w > _wallThickness + 2 && node->h > _wallThickness + 2;
+    bool hasRoom = node->w > _wallThickness + _minRoomSize && node->h > _wallThickness + _minRoomSize;
 
     for(int x = node->x; x < (node->x + node->w); x++){
         for(int y = node->y; y < (node->y + node->h); y++){
@@ -36,32 +36,6 @@ bool BasicRoomGenerator::visitNode(TCODBsp *node, void *userData)
             }
         }
         BuildWalls(node);
-        //BuildDoors(node);
     }
     return true;
 }
-
-
-//BUILDILNG GENERATION
-/*
-    bool hasBuilding = rand() % 3 ? false : true;
-    auto buildingWidth = rand() % 3;
-    auto buildingHeight = rand() % 3;
-
-    auto minX = node->x + buildingWidth;
-    auto minY = node->y + buildingHeight;
-    auto maxX = node->x + node->w - buildingWidth;
-    auto maxY = node->y + node->h - buildingHeight;
-
-    for(int x = node->x; x < (node->x + node->w); x++){
-        for(int y = node->y; y < (node->y + node->h); y++){
-          if(hasBuilding)
-            {
-                if((x > minX && x < maxX) && (y > minY && y < maxY))
-                {
-                    _map->setProperties(x,y,false,false);
-                }
-            }
-        }
-    }
-*/
