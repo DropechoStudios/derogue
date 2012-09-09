@@ -2,7 +2,7 @@
 #ifndef DUNGEONCOMPONENT_H
 #define DUNGEONCOMPONENT_H
 
-#include "dungeonGenerator.hpp"
+#include "DungeonGenerators/BasicRoomGenerator.hpp"
 #include "IEngineComponent.hpp"
 
 namespace derogue {
@@ -13,7 +13,7 @@ private:
     TCODBsp *_dungeon;
     TCODMap *_map;
 
-    dungeon::DungeonGenerator* _generator;
+    dungeon::BasicRoomGenerator* _generator;
 public:
     DungeonComponent()
     {
@@ -23,7 +23,8 @@ public:
 
     virtual void Init(Engine* engine) {
         _map = engine->GetComponent<WorldComponent>()->GetMap();
-        _generator = new dungeon::DungeonGenerator(_map);
+
+        _generator = new dungeon::BasicRoomGenerator(_map,1,4);
         _dungeon->traversePostOrder(_generator,NULL);
     };
 

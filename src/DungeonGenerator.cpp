@@ -1,26 +1,33 @@
-#include "dungeonGenerator.hpp"
+#include "DungeonGenerators/BasicRoomGenerator.hpp"
 
 using namespace derogue;
 using namespace dungeon;
 
-bool DungeonGenerator::BuildWalls(TCODBsp *node){
+void BasicRoomGenerator::BuildWalls(TCODBsp *node){
+    auto minX = node->x + _wallThickness;
+    auto minY = node->y + _wallThickness;
+    auto maxX = node->x + node->w - _wallThickness;
+    auto maxY = node->y + node->h - _wallThickness;
+
+    bool hasRoom = node->w > _wallThickness + 2 && node->h > _wallThickness + 2;
+
     for(int x = node->x; x < (node->x + node->w); x++){
         for(int y = node->y; y < (node->y + node->h); y++){
-           if(x == node->x || x == (node->x + node->w) || x == WINDOW_X -1 ||
-              y == node->y || y == (node->y + node->h) || y == WINDOW_Y -1 )
-            {
+            if(hasRoom){
+                if(x < minX || x > maxX || x == WINDOW_X -1 ||
+                   y < minY || y > maxY || y == WINDOW_Y -1 )
+                {
+                    _map->setProperties(x,y,false,false);
+                }
+            }
+            else{
                 _map->setProperties(x,y,false,false);
             }
         }
     }
 }
 
-bool DungeonGenerator::BuildDoors(TCODBsp *node)
-{
-    _map->setProperties((node->x + (node->w /2)),node->y,true,true);
-}
-
-bool DungeonGenerator::visitNode(TCODBsp *node, void *userData)
+bool BasicRoomGenerator::visitNode(TCODBsp *node, void *userData)
 {
     if(node->isLeaf()){
         for(int x = node->x; x < (node->x + node->w); x++){
@@ -29,7 +36,32 @@ bool DungeonGenerator::visitNode(TCODBsp *node, void *userData)
             }
         }
         BuildWalls(node);
-        BuildDoors(node);
+        //BuildDoors(node);
     }
     return true;
 }
+
+
+//BUILDILNG GENERATION
+/*
+    bool hasBuilding = rand() % 3 ? false : true;
+    auto buildingWidth = rand() % 3;
+    auto buildingHeight = rand() % 3;
+
+    auto minX = node->x + buildingWidth;
+    auto minY = node->y + buildingHeight;
+    auto maxX = node->x + node->w - buildingWidth;
+    auto maxY = node->y + node->h - buildingHeight;
+
+    for(int x = node->x; x < (node->x + node->w); x++){
+        for(int y = node->y; y < (node->y + node->h); y++){
+          if(hasBuilding)
+            {
+                if((x > minX && x < maxX) && (y > minY && y < maxY))
+                {
+                    _map->setProperties(x,y,false,false);
+                }
+            }
+        }
+    }
+*/

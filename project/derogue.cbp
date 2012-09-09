@@ -50,9 +50,10 @@
 		<Unit filename="..\include\Components\PathfindingComponent.hpp" />
 		<Unit filename="..\include\Components\PlayerComponent.hpp" />
 		<Unit filename="..\include\Components\WorldComponent.hpp" />
+		<Unit filename="..\include\DungeonGenerators\BasicRoomGenerator.hpp" />
+		<Unit filename="..\include\DungeonGenerators\HallGenerator.hpp" />
 		<Unit filename="..\include\Entities\IGameEntity.hpp" />
 		<Unit filename="..\include\defines.hpp" />
-		<Unit filename="..\include\dungeonGenerator.hpp" />
 		<Unit filename="..\include\engine.hpp" />
 		<Unit filename="..\include\libtcod\bresenham.h" />
 		<Unit filename="..\include\libtcod\bresenham.hpp" />
