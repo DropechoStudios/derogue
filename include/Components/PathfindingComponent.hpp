@@ -29,8 +29,9 @@ class PathfindingComponent : public IEngineComponent{
         {
             if(_paths.count(pathId) == 0)
             {
-                _paths[pathId] = new TCODPath(_map);
+                _paths[pathId] = new TCODPath(_map,0.0f);
             }
+
             return _paths[pathId];
         }
 

@@ -15,7 +15,6 @@ void Engine::Init()
 void Engine::Run()
 {
     while(true){
-        //TCODSystem::waitForEvent((int)eventType,&_key,&_mouse, true);
         TCODSystem::checkForEvent(eventType,&_key,&_mouse);
         if(TCODConsole::isKeyPressed(TCODK_ESCAPE)) { return; }
 

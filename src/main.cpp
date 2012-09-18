@@ -3,6 +3,7 @@
 #include "Components/PathfindingComponent.hpp"
 #include "Components/LightingComponent.hpp"
 #include "Components/MobComponent.hpp"
+#include "Components/ItemComponent.hpp"
 #include "engine.hpp"
 
 using namespace derogue;
@@ -15,9 +16,8 @@ engine->RegisterComponent<DungeonComponent>();
 engine->RegisterComponent<PlayerComponent>();
 engine->RegisterComponent<PathfindingComponent>();
 engine->RegisterComponent<MobComponent>();
+engine->RegisterComponent<ItemComponent>();
 engine->RegisterComponent<LightingComponent>();
-
-
 
 engine->Init();
 engine->Run();

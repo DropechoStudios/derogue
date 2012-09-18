@@ -18,7 +18,7 @@ public:
     DungeonComponent()
     {
         _dungeon = new TCODBsp(0,0,WINDOW_X,WINDOW_Y);
-        _dungeon->splitRecursive(NULL,7,3,3,1.5f,1.5f);
+        _dungeon->splitRecursive(NULL,5,3,3,1.5f,1.5f);
     }
 
     virtual void Init(Engine* engine) {
@@ -33,15 +33,20 @@ public:
             }
         }
 
-        auto roomgenerator = new dungeon::BasicRoomGenerator(_map,1,2);
-        auto hallgenerator = new dungeon::HallGenerator(_map,1,2);
+        auto wallthickness = 0;
+        auto minimumRoomSize = 2;
 
-        _dungeon->traversePostOrder(roomgenerator,NULL);
-        _dungeon->traverseInvertedLevelOrder(hallgenerator,NULL);
+        _dungeon->traversePostOrder(new dungeon::BasicRoomGenerator(_map,wallthickness,minimumRoomSize), NULL);
+        _dungeon->traverseInvertedLevelOrder(new dungeon::HallGenerator(_map,wallthickness,minimumRoomSize), NULL);
     };
 
     virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse) {
     };
+
+    virtual TCODBsp* GetDungeon()
+    {
+        return _dungeon;
+    }
 };
 
 } //end namespace derogue

@@ -46,6 +46,7 @@
 		</Compiler>
 		<Unit filename="..\include\Components\DungeonComponent.hpp" />
 		<Unit filename="..\include\Components\IEngineComponent.hpp" />
+		<Unit filename="..\include\Components\ItemComponent.hpp" />
 		<Unit filename="..\include\Components\LightingComponent.hpp" />
 		<Unit filename="..\include\Components\MobComponent.hpp" />
 		<Unit filename="..\include\Components\PathfindingComponent.hpp" />
@@ -53,7 +54,11 @@
 		<Unit filename="..\include\Components\WorldComponent.hpp" />
 		<Unit filename="..\include\DungeonGenerators\BasicRoomGenerator.hpp" />
 		<Unit filename="..\include\DungeonGenerators\HallGenerator.hpp" />
+		<Unit filename="..\include\DungeonGenerators\ItemGenerator.hpp" />
 		<Unit filename="..\include\Entities\IGameEntity.hpp" />
+		<Unit filename="..\include\Entities\Item.hpp" />
+		<Unit filename="..\include\ItemGenerators\Types.hpp" />
+		<Unit filename="..\include\ItemGenerators\WeaponGenerator.hpp" />
 		<Unit filename="..\include\defines.hpp" />
 		<Unit filename="..\include\engine.hpp" />
 		<Unit filename="..\include\stlextensions.hpp" />
