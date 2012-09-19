@@ -2,6 +2,7 @@
 
 #include "libtcod.hpp"
 #include "defines.hpp"
+#include "Entities/IGameEntity.hpp"
 #include "ItemGenerators/Types.hpp"
 
 namespace derogue {
@@ -14,21 +15,23 @@ private:
     int _wallThickness;
     int _minRoomSize;
 
-    void PlaceItems(TCODBsp *node)
-    {
-        if(node->isLeaf())
-        {
-            auto itemX = node->x + (rand() % node->w);
-            auto itemY = node->y + (rand() % node->h);
-
-            TCODConsole::root->setChar(itemX,itemY,'t');
-        }
-    }
-
 public :
     bool visitNode(TCODBsp *node, void *userData)
     {
-        PlaceItems(node);
+        std::vector<IEntity*>* _items = (std::vector<IEntity*>*)userData;
+        if(node->isLeaf())
+        {
+            auto itemX = (node->x + _wallThickness + (rand() % (node->w - _wallThickness)));
+            auto itemY = (node->y + _wallThickness + (rand() % (node->h - _wallThickness)));
+
+            auto hasItem = !(rand()%4); //25% chance of item in room.
+            if(hasItem)
+            {
+                auto type = (items::WeaponType)(rand()%items::WT_COUNT);
+                _items->push_back(new IEntity(itemX,itemY,items::WeaponTypesToSymbols[type]));
+            }
+
+        }
         return true;
     }
 

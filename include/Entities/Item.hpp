@@ -22,6 +22,7 @@ class Weapon : public Item
 {
     private:
         WeaponType _weaponType;
+
     public:
         Weapon(WeaponType weaponType, MaterialType materialType)
         : Item(IT_WEAPON,materialType), _weaponType(weaponType){}
@@ -30,6 +31,8 @@ class Weapon : public Item
         {
             return 1 + _weaponType + GetAmount();
         }
+
+
 };
 
 } //end namespace derogue

@@ -11,15 +11,16 @@ namespace derogue {
 class Engine; //Forward declaration.
 
 class ItemComponent: public IEngineComponent{
+    std::vector<IEntity*> _items;
 public:
     virtual void Init(Engine * engine)
     {
         auto dungeon = engine->GetComponent<DungeonComponent>()->GetDungeon();
-        dungeon->traverseInvertedLevelOrder(new dungeon::ItemGenerator(NULL,0,2), NULL);
+        dungeon->traverseInvertedLevelOrder(new dungeon::ItemGenerator(NULL,1,2), &_items);
     };
     virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse)
     {
-        TCODConsole::root->setChar(50,50,'t');
+        for_each(_items,[](IEntity* entity){ entity->DrawToConsole(); });
     };
 };
 

@@ -8,7 +8,7 @@ using namespace derogue;
 void Engine::Init()
 {
     TCODSystem::setFps(25);
-    TCODConsole::initRoot(WINDOW_X, WINDOW_Y, "DeRogue v0.2", false);
+    TCODConsole::initRoot(WINDOW_X, WINDOW_Y, "DeRogue v0.3", false);
     for_each(_components,[this](IEngineComponent* comp){ comp->Init(this); });
 }
 

@@ -35,7 +35,6 @@ void Engine::RegisterComponent()
         return;
     }
 
-    GetComponent<T>();
     IEngineComponent* component = static_cast<IEngineComponent*>(new T());
     if(component)
     {
@@ -47,10 +46,9 @@ template<class T>
 T* Engine::GetComponent()
 {
     IEngineComponent* comp = filter(_components,[](IEngineComponent* component){ return dynamic_cast<T*>(component) != NULL; });
-    if(comp){
-        return static_cast<T*>(comp);
-    }
-    return NULL;
+    return comp
+        ? static_cast<T*>(comp)
+        : NULL;
 }
 
 } //end namespace derogue

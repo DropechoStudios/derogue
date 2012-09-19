@@ -29,14 +29,11 @@ namespace items {
         WT_COUNT //convenice for rand mod against
     };
 
-    enum WeaponTypeSymbol
-    {
-        WTS_STICK = '|',
-        WTS_DAGGER = ';',
-        WTS_SWORD = '!',
-        WTS_AXE = 'p'
+    std::map<WeaponType,char> WeaponTypesToSymbols = {
+        {WT_STICK,  '|'},
+        {WT_DAGGER, ';'},
+        {WT_SWORD,  't'},
+        {WT_AXE,    'p'}
     };
-
-
 }//end namespace items
 }//end namespace derogue
