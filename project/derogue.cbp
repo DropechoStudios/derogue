@@ -55,9 +55,13 @@
 		<Unit filename="..\include\DungeonGenerators\BasicRoomGenerator.hpp" />
 		<Unit filename="..\include\DungeonGenerators\HallGenerator.hpp" />
 		<Unit filename="..\include\DungeonGenerators\ItemGenerator.hpp" />
-		<Unit filename="..\include\Entities\IGameEntity.hpp" />
-		<Unit filename="..\include\Entities\Item.hpp" />
-		<Unit filename="..\include\ItemGenerators\Types.hpp" />
+		<Unit filename="..\include\Entities\Creatures\Creature.hpp" />
+		<Unit filename="..\include\Entities\Entity.hpp" />
+		<Unit filename="..\include\Entities\Items\Armor.hpp" />
+		<Unit filename="..\include\Entities\Items\Item.hpp" />
+		<Unit filename="..\include\Entities\Items\Potion.hpp" />
+		<Unit filename="..\include\Entities\Items\Types.hpp" />
+		<Unit filename="..\include\Entities\Items\Weapon.hpp" />
 		<Unit filename="..\include\ItemGenerators\WeaponGenerator.hpp" />
 		<Unit filename="..\include\defines.hpp" />
 		<Unit filename="..\include\engine.hpp" />

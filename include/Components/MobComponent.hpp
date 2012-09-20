@@ -8,14 +8,14 @@ namespace derogue {
 class MobComponent : public IEngineComponent{
     private:
         TCODMap * _map;
-        IEntity * _player;
+        Entity * _player;
         PathfindingComponent * _pathFinding;
 
-        std::vector<IEntity*> _mobs;
+        std::vector<Entity*> _mobs;
 
         float _timeSinceLastMobUpdate;
 
-        void PathToOtherMob(IEntity* mob, IEntity* target)
+        void PathToOtherMob(Entity* mob, Entity* target)
         {
             auto mobPos = mob->GetPosition();
             auto targetPos = target->GetPosition();
@@ -45,7 +45,7 @@ class MobComponent : public IEngineComponent{
 
             if(_timeSinceLastMobUpdate > 1) // if > 1 second has elapsed, update path
             {
-                for_each(_mobs,[_player,this](IEntity* mob){PathToOtherMob(mob,_player);});
+                for_each(_mobs,[_player,this](Entity* mob){PathToOtherMob(mob,_player);});
                 _timeSinceLastMobUpdate = 0;
             }
 

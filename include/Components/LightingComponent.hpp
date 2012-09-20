@@ -10,7 +10,7 @@ namespace derogue {
 class LightingComponent : public IEngineComponent {
 private:
     TCODMap * _map;
-    IEntity* _player;
+    Entity* _player;
 public:
     virtual void Init(Engine * engine)
     {

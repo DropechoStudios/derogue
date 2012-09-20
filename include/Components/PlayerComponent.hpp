@@ -2,7 +2,7 @@
 #ifndef PLAYERCOMPONENT_H
 #define PLAYERCOMPONENT_H
 
-#include "Entities/IGameEntity.hpp"
+#include "Entities/Entity.hpp"
 #include "WorldComponent.hpp"
 #include "Engine.hpp"
 
@@ -11,16 +11,16 @@ namespace derogue {
 class PlayerComponent : public IEngineComponent
 {
 private:
-    IEntity* _player;
+    Entity* _player;
     TCODMap * _map;
 
 public:
     PlayerComponent()
     {
-        _player = new IEntity('@');
+        _player = new Entity('@');
     }
 
-    virtual IEntity* GetPlayer(){
+    virtual Entity* GetPlayer(){
         return _player;
     }
 

@@ -2,8 +2,9 @@
 
 #include "libtcod.hpp"
 #include "defines.hpp"
-#include "Entities/IGameEntity.hpp"
-#include "ItemGenerators/Types.hpp"
+#include "Entities/Entity.hpp"
+#include "Entities/Items/Types.hpp"
+#include "Entities/Items/Weapon.hpp"
 
 namespace derogue {
 namespace dungeon {
@@ -18,7 +19,7 @@ private:
 public :
     bool visitNode(TCODBsp *node, void *userData)
     {
-        std::vector<IEntity*>* _items = (std::vector<IEntity*>*)userData;
+        std::vector<Entity*>* _items = (std::vector<Entity*>*)userData;
         if(node->isLeaf())
         {
             auto itemX = (node->x + _wallThickness + (rand() % (node->w - _wallThickness)));
@@ -28,7 +29,7 @@ public :
             if(hasItem)
             {
                 auto type = (items::WeaponType)(rand()%items::WT_COUNT);
-                _items->push_back(new IEntity(itemX,itemY,items::WeaponTypesToSymbols[type]));
+                _items->push_back(new Entity(itemX,itemY,items::WeaponTypesToSymbols[type]));
             }
 
         }

@@ -11,7 +11,7 @@ namespace derogue {
 class Engine; //Forward declaration.
 
 class ItemComponent: public IEngineComponent{
-    std::vector<IEntity*> _items;
+    std::vector<Entity*> _items;
 public:
     virtual void Init(Engine * engine)
     {
@@ -20,7 +20,7 @@ public:
     };
     virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse)
     {
-        for_each(_items,[](IEntity* entity){ entity->DrawToConsole(); });
+        for_each(_items,[](Entity* entity){ entity->DrawToConsole(); });
     };
 };
 

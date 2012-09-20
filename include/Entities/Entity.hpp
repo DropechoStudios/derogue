@@ -13,20 +13,20 @@ struct Position2d
     int Y;
 };
 
-class IEntity
+class Entity
 {
     private:
         Position2d _position;
         char _symbol;
 
     public:
-        IEntity()
+        Entity()
         :_position(Position2d(0,0)),_symbol(' '){};
 
-        IEntity(char symbol)
+        Entity(char symbol)
         :_position(Position2d(0,0)),_symbol(symbol){};
 
-        IEntity(int x, int y, char symbol)
+        Entity(int x, int y, char symbol)
         :_position(Position2d(x,y)),_symbol(symbol){};
 
         Position2d GetPosition()
@@ -64,10 +64,6 @@ class IEntity
         {
             TCODConsole::root->putChar(_position.X,_position.Y,_symbol);
         };
-};
-
-class IMobileEntity : public IEntity
-{
 };
 
 } //end namespace derogue
