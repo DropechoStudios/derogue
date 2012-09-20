@@ -6,28 +6,36 @@ namespace derogue
 
 struct Position2d
 {
-    Position2d(){};
+    Position2d():X(0),Y(0){};
     Position2d(int x, int y):X(x),Y(y){};
 
     int X;
     int Y;
 };
 
+struct Symbol
+{
+    Symbol(char c, TCODColor color = TCODColor::white): Char(c),Color(color){};
+
+    char Char;
+    TCODColor Color;
+};
+
 class Entity
 {
     private:
         Position2d _position;
-        char _symbol;
+        Symbol _symbol;
 
     public:
         Entity()
-        :_position(Position2d(0,0)),_symbol(' '){};
+        :_position(0,0),_symbol(' '){};
 
         Entity(char symbol)
-        :_position(Position2d(0,0)),_symbol(symbol){};
+        :_position(0,0),_symbol(symbol){};
 
-        Entity(int x, int y, char symbol)
-        :_position(Position2d(x,y)),_symbol(symbol){};
+        Entity(int x, int y, char symbol, TCODColor color = TCODColor::white)
+        :_position(x,y),_symbol(symbol,color){};
 
         Position2d GetPosition()
         {
@@ -45,24 +53,10 @@ class Entity
             _position.Y = y;
         }
 
-        void SetSymbol(char symbol)
-        {
-            _symbol = symbol;
-        }
-
-        void SetSymbol(int symbol)
-        {
-            _symbol = (char)symbol;
-        }
-
-        char GetSymbol()
-        {
-            return _symbol;
-        }
-
         void DrawToConsole()
         {
-            TCODConsole::root->putChar(_position.X,_position.Y,_symbol);
+            TCODConsole::root->putChar(_position.X,_position.Y,_symbol.Char);
+            TCODConsole::root->setCharForeground(_position.X,_position.Y,_symbol.Color);
         };
 };
 

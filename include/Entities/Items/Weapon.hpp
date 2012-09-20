@@ -27,7 +27,7 @@ class Weapon : public Item
 
     public:
         Weapon(WeaponType weaponType, MaterialType materialType)
-        : Item(materialType), _weaponType(weaponType){}
+        : Item(materialType,WeaponTypesToSymbols[weaponType]), _weaponType(weaponType){}
 
         int GetDamage()
         {

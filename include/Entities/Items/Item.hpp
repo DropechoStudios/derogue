@@ -1,4 +1,5 @@
 #pragma once
+#include "Entities/Entity.hpp"
 #include "Entities/Items/Types.hpp"
 
 namespace derogue {
@@ -8,13 +9,20 @@ class Item
 {
     private:
         MaterialType _materialType;
+        Symbol _symbol;
 
     protected:
-        Item(MaterialType materialType) : _materialType(materialType){}
+        Item(MaterialType materialType, char symbol = 0) : _materialType(materialType),_symbol(symbol) {}
 
         int GetAmount()
         {
             return _materialType;
+        }
+
+    public:
+        Symbol GetSymbol()
+        {
+            return _symbol;
         }
 };
 

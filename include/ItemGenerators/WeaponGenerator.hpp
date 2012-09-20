@@ -1,20 +1,22 @@
 #pragma once
 
-#include "ItemGenerators/Types.hpp"
-#include "Entities/Item.hpp"
+#include "Entities/Items/Types.hpp"
+#include "Entities/Items/Weapon.hpp"
 
 namespace derogue {
+namespace items {
 
 class WeaponGenerator
 {
     public:
         static Weapon* GenerateWeapon()
         {
-            auto materialType = rand() % (MT_COUNT);
-            auto weaponType = (rand() % (WT_COUNT);
+            auto materialType = (MaterialType)(rand() % (MT_COUNT));
+            auto weaponType = (WeaponType)(rand() % (WT_COUNT));
 
             return new Weapon(weaponType,materialType);
         }
-}
+};
 
+} // end namespace items
 } // end namespace derogue

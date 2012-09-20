@@ -13,10 +13,10 @@ Engine* engine = new Engine();
 
 engine->RegisterComponent<WorldComponent>();
 engine->RegisterComponent<DungeonComponent>();
-engine->RegisterComponent<PlayerComponent>();
-engine->RegisterComponent<PathfindingComponent>();
-engine->RegisterComponent<MobComponent>();
 engine->RegisterComponent<ItemComponent>();
+engine->RegisterComponent<PathfindingComponent>();
+engine->RegisterComponent<PlayerComponent>();
+engine->RegisterComponent<MobComponent>();
 engine->RegisterComponent<LightingComponent>();
 
 engine->Init();

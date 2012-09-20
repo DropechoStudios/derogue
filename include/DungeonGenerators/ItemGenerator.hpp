@@ -5,6 +5,7 @@
 #include "Entities/Entity.hpp"
 #include "Entities/Items/Types.hpp"
 #include "Entities/Items/Weapon.hpp"
+#include "ItemGenerators/WeaponGenerator.hpp"
 
 namespace derogue {
 namespace dungeon {
@@ -28,8 +29,8 @@ public :
             auto hasItem = !(rand()%4); //25% chance of item in room.
             if(hasItem)
             {
-                auto type = (items::WeaponType)(rand()%items::WT_COUNT);
-                _items->push_back(new Entity(itemX,itemY,items::WeaponTypesToSymbols[type]));
+                auto weapon = items::WeaponGenerator::GenerateWeapon();
+                _items->push_back(new Entity(itemX,itemY,weapon->GetSymbol().Char));
             }
 
         }
