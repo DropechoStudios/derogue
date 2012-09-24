@@ -15,18 +15,19 @@ private:
     int _minRoomSize;
 
     void BuildRoom(TCODBsp *node){
-        auto minX = node->x + _wallThickness;
-        auto minY = node->y + _wallThickness;
-        auto maxX = node->x + node->w - _wallThickness;
-        auto maxY = node->y + node->h - _wallThickness;
+        auto minX = node->x + _wallThickness - 1;
+        auto minY = node->y + _wallThickness - 1;
+        auto maxX = node->x + node->w;
+        auto maxY = node->y + node->h;
 
-        bool hasRoom = node->w > _wallThickness + _minRoomSize && node->h > _wallThickness + _minRoomSize;
+        auto minSize = (_wallThickness + _minRoomSize);
+        bool hasRoom = node->w > minSize && node->h > minSize;
 
-        for(int x = node->x; x < (node->x + node->w); x++){
-            for(int y = node->y; y < (node->y + node->h); y++){
+        for(int x = node->x; x <= (node->x + node->w); x++){
+            for(int y = node->y; y <= (node->y + node->h); y++){
                 if(hasRoom){
-                    if((x > minX && x < maxX && x != WINDOW_X -1) &&
-                       (y > minY && y < maxY && y != WINDOW_Y -1))
+                    if(((x > minX && x < maxX && x != WINDOW_X -1) || (x <= _wallThickness && x >= 1)) &&
+                       ((y > minY && y < maxY && y != WINDOW_Y -1) || (y <= _wallThickness && y >= 1)))
                     {
                         _map->setProperties(x,y,true,true);
                     }

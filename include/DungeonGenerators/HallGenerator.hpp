@@ -21,8 +21,10 @@ private:
             auto left = node->getLeft();
             auto right = node->getRight();
 
-            bool leftHasRoom  = (left->w > _wallThickness + _minRoomSize  && left->h > _wallThickness + _minRoomSize);
-            bool rightHasRoom = (right->w > _wallThickness + _minRoomSize && right->h > _wallThickness + _minRoomSize);
+            auto minSize = (_wallThickness + _minRoomSize);
+
+            bool leftHasRoom  = (left->w > minSize && left->h > minSize );
+            bool rightHasRoom = (right->w > minSize && right->h > minSize );
 
             if(leftHasRoom && rightHasRoom){
                 auto startX = left->x + (left->w / 2)   < right->x + (right->w / 2)  ? left->x + (left->w / 2) : right->x + (right->w / 2);

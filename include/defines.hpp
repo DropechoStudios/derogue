@@ -10,11 +10,11 @@ namespace derogue {
 const int WINDOW_X = 80;
 const int WINDOW_Y = 60;
 
-//const TCODColor darkWall(50,50,150);
-//const TCODColor darkGround(0,0,100);
+const TCODColor darkWall(50,50,150);
+const TCODColor darkGround(0,0,100);
 
-const TCODColor darkWall(0,0,0);
-const TCODColor darkGround(0,0,0);
+//const TCODColor darkWall(0,0,0);
+//const TCODColor darkGround(0,0,0);
 
 const TCODColor lightWall(130,110,50);
 const TCODColor lightGround(200,180,50);

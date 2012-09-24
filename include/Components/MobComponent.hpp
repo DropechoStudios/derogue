@@ -20,7 +20,16 @@ class MobComponent : public IEngineComponent{
             auto mobPos = mob->GetPosition();
             auto targetPos = target->GetPosition();
 
+            Position2d prevPos = Position2d(mobPos.X,mobPos.Y);
+
             _pathFinding->ComputeAndWalkPath(5,&mobPos.X,&mobPos.Y,targetPos.X,targetPos.Y);
+
+            if(prevPos.X != mobPos.X || prevPos.Y != mobPos.Y)
+            {
+                _map->setProperties(prevPos.X,prevPos.Y,true,true);
+                _map->setProperties(mobPos.X,mobPos.Y,false,false);
+            }
+
             mob->SetPosition(mobPos);
         }
 
@@ -36,7 +45,7 @@ class MobComponent : public IEngineComponent{
             _player = engine->GetComponent<PlayerComponent>()->GetPlayer();
             _pathFinding = engine->GetComponent<PathfindingComponent>();
 
-
+            _mobs.push_back(new Entity(1,1,'g'));
         };
 
         virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse)
@@ -45,14 +54,11 @@ class MobComponent : public IEngineComponent{
 
             if(_timeSinceLastMobUpdate > 1) // if > 1 second has elapsed, update path
             {
-                for_each(_mobs,[_player,this](Entity* mob){PathToOtherMob(mob,_player);});
+                for_each(_mobs,[_player,this](Entity* mob){PathToOtherMob(mob,_player); });
                 _timeSinceLastMobUpdate = 0;
             }
 
-            if(_pathFinding->GetPath(5)) //Draw / walk path.
-            {
-                _pathFinding->DrawPath(5,TCODColor::lime);
-            }
+            for_each(_mobs,[](Entity* mob){ mob->DrawToConsole(); });
         };
 };
 

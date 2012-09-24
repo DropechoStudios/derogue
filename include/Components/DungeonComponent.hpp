@@ -18,7 +18,7 @@ public:
     DungeonComponent()
     {
         _dungeon = new TCODBsp(0,0,WINDOW_X,WINDOW_Y);
-        _dungeon->splitRecursive(NULL,5,3,3,1.5f,1.5f);
+        _dungeon->splitRecursive(NULL,6,6,6,1.25f,1.25f);
     }
 
     virtual void Init(Engine* engine) {
@@ -33,7 +33,7 @@ public:
             }
         }
 
-        auto wallthickness = 0;
+        auto wallthickness = 2;
         auto minimumRoomSize = 2;
 
         _dungeon->traversePostOrder(new dungeon::BasicRoomGenerator(_map,wallthickness,minimumRoomSize), NULL);
