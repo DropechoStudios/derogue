@@ -21,8 +21,8 @@ public:
     virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse)
     {
         _map->computeFov(_player->GetPosition().X,_player->GetPosition().Y, LightDistance);
-        for(int x = 0; x < WINDOW_X; x++){
-            for(int y = 0; y < WINDOW_Y; y++){
+        for(int x = 0; x < DUNGEON_X; x++){
+            for(int y = 0; y < DUNGEON_Y; y++){
                 bool isWall = !_map->isWalkable(x,y);
 
                 TCODColor light = _map->isInFov(x,y)

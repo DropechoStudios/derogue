@@ -26,8 +26,8 @@ private:
         for(int x = node->x; x <= (node->x + node->w); x++){
             for(int y = node->y; y <= (node->y + node->h); y++){
                 if(hasRoom){
-                    if(((x > minX && x < maxX && x != WINDOW_X -1) || (x <= _wallThickness && x >= 1)) &&
-                       ((y > minY && y < maxY && y != WINDOW_Y -1) || (y <= _wallThickness && y >= 1)))
+                    if(((x > minX && x < maxX && x != DUNGEON_X -1) || (x <= _wallThickness && x >= 1)) &&
+                       ((y > minY && y < maxY && y != DUNGEON_Y -1) || (y <= _wallThickness && y >= 1)))
                     {
                         _map->setProperties(x,y,true,true);
                     }

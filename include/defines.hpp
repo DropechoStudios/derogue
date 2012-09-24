@@ -7,8 +7,11 @@
 
 namespace derogue {
 
+const int DUNGEON_X = 80;
+const int DUNGEON_Y = 60;
+
 const int WINDOW_X = 80;
-const int WINDOW_Y = 60;
+const int WINDOW_Y = 80;
 
 const TCODColor darkWall(50,50,150);
 const TCODColor darkGround(0,0,100);

@@ -17,7 +17,7 @@ private:
 public:
     DungeonComponent()
     {
-        _dungeon = new TCODBsp(0,0,WINDOW_X,WINDOW_Y);
+        _dungeon = new TCODBsp(0,0,DUNGEON_X,DUNGEON_Y);
         _dungeon->splitRecursive(NULL,6,6,6,1.25f,1.25f);
     }
 
@@ -25,9 +25,9 @@ public:
         _map = engine->GetComponent<WorldComponent>()->GetMap();
 
         //Clear the map, set everything to filled.
-        for(int x = 0; x < WINDOW_X; x++)
+        for(int x = 0; x < DUNGEON_X; x++)
         {
-            for(int y = 0; y < WINDOW_Y; y++)
+            for(int y = 0; y < DUNGEON_Y; y++)
             {
                 _map->setProperties(x,y,false,false);
             }

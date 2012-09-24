@@ -26,10 +26,11 @@ public:
 
     virtual void Init(Engine* engine) {
         _map = engine->GetComponent<WorldComponent>()->GetMap();
+        _mobs = engine->GetComponent<MobComponent>();
 
         while(!_map->isWalkable(_player->GetPosition().X,_player->GetPosition().Y))
         {
-            _player->SetPosition(rand() % WINDOW_X, rand() % WINDOW_Y);
+            _player->SetPosition(rand() % DUNGEON_X, rand() % DUNGEON_Y);
         }
     };
 
@@ -37,15 +38,37 @@ public:
         auto playerPos = _player->GetPosition();
 
         switch(key->c){
-            case 'w': _map->isWalkable(playerPos.X, playerPos.Y - 1) ? playerPos.Y-- : 0; break; // up
-            case 'a': _map->isWalkable(playerPos.X - 1, playerPos.Y) ? playerPos.X-- : 0; break; // left
-            case 's': _map->isWalkable(playerPos.X, playerPos.Y + 1) ? playerPos.Y++ : 0; break; // down
-            case 'd': _map->isWalkable(playerPos.X + 1, playerPos.Y) ? playerPos.X++ : 0; break; // right
+            case 'W':  case 'w': TryWalk(playerPos.X, playerPos.Y - 1); break; // up
+            case 'A':  case 'a': TryWalk(playerPos.X - 1, playerPos.Y); break; // left
+            case 'S':  case 's': TryWalk(playerPos.X, playerPos.Y + 1); break; // down
+            case 'D':  case 'd': TryWalk(playerPos.X + 1, playerPos.Y); break; // right
         }
 
-        _player->SetPosition(playerPos);
         _player->DrawToConsole();
     };
+
+    void TryWalk(int x, int y)
+    {
+        if(_map->isWalkable(x,y))
+        {
+            _player->SetPosition(Position2d(x,y));
+        }
+        else
+        {
+           TryAffect(x,y);
+        }
+    }
+
+    void TryAffect(int targetX, int targetY)
+    {
+        auto effectedThing = TCODConsole::root->getChar(targetX,targetY);
+        switch(effectedThing)
+        {
+            case ' ': TCODConsole::root->print(0,60, "walked into a wall."); break;
+            default: TCODConsole::root->print(0,60, "walked into something.");
+        }
+
+    }
 };
 
 } //end namespace derogue
