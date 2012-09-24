@@ -3,6 +3,8 @@
 #define PATHFINDINGCOMPONENT_H
 
 #include "libtcod.hpp"
+#include "WorldComponent.hpp"
+#include "Engine.hpp"
 #include <map>
 
 namespace derogue {

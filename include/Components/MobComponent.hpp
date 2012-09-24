@@ -1,6 +1,8 @@
 #pragma once
 
 #include "libtcod.hpp"
+#include "PlayerComponent.hpp"
+#include "PathfindingComponent.hpp"
 #include "stlextensions.hpp"
 
 namespace derogue {
@@ -37,6 +39,11 @@ class MobComponent : public IEngineComponent{
         MobComponent()
         {
             _timeSinceLastMobUpdate = 0;
+        }
+
+        std::vector<Entity*>& GetMobs()
+        {
+            return _mobs;
         }
 
         virtual void Init(Engine * engine)

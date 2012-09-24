@@ -46,6 +46,7 @@
 		</Compiler>
 		<Unit filename="..\include\Components\DungeonComponent.hpp" />
 		<Unit filename="..\include\Components\IEngineComponent.hpp" />
+		<Unit filename="..\include\Components\InteractionComponent.hpp" />
 		<Unit filename="..\include\Components\ItemComponent.hpp" />
 		<Unit filename="..\include\Components\LightingComponent.hpp" />
 		<Unit filename="..\include\Components\MobComponent.hpp" />
@@ -56,6 +57,7 @@
 		<Unit filename="..\include\DungeonGenerators\HallGenerator.hpp" />
 		<Unit filename="..\include\DungeonGenerators\ItemGenerator.hpp" />
 		<Unit filename="..\include\Entities\Creatures\Creature.hpp" />
+		<Unit filename="..\include\Entities\Creatures\Types.hpp" />
 		<Unit filename="..\include\Entities\Entity.hpp" />
 		<Unit filename="..\include\Entities\Items\Armor.hpp" />
 		<Unit filename="..\include\Entities\Items\Item.hpp" />

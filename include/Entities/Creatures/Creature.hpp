@@ -1,12 +1,16 @@
 #pragma once
 
-#include "Entity.hpp"
+#include "Entities/Entity.hpp"
+#include "Types.hpp"
 
 namespace derogue{
 
-class Createure : public Entity
+class Creature : public Entity
 {
-
+private:
+    MonsterType _type;
+public:
+    Creature(MonsterType type) : _type(type){}
 };
 
 } //end namespace derogue

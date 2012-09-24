@@ -26,7 +26,6 @@ public:
 
     virtual void Init(Engine* engine) {
         _map = engine->GetComponent<WorldComponent>()->GetMap();
-        _mobs = engine->GetComponent<MobComponent>();
 
         while(!_map->isWalkable(_player->GetPosition().X,_player->GetPosition().Y))
         {
@@ -53,21 +52,6 @@ public:
         {
             _player->SetPosition(Position2d(x,y));
         }
-        else
-        {
-           TryAffect(x,y);
-        }
-    }
-
-    void TryAffect(int targetX, int targetY)
-    {
-        auto effectedThing = TCODConsole::root->getChar(targetX,targetY);
-        switch(effectedThing)
-        {
-            case ' ': TCODConsole::root->print(0,60, "walked into a wall."); break;
-            default: TCODConsole::root->print(0,60, "walked into something.");
-        }
-
     }
 };
 

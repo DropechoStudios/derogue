@@ -4,6 +4,7 @@
 #include "Components/LightingComponent.hpp"
 #include "Components/MobComponent.hpp"
 #include "Components/ItemComponent.hpp"
+#include "Components/InteractionComponent.hpp"
 #include "engine.hpp"
 
 using namespace derogue;
@@ -18,6 +19,7 @@ engine->RegisterComponent<PlayerComponent>();
 engine->RegisterComponent<PathfindingComponent>();
 engine->RegisterComponent<MobComponent>();
 engine->RegisterComponent<LightingComponent>();
+engine->RegisterComponent<InteractionComponent>();
 
 engine->Init();
 engine->Run();
