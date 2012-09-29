@@ -53,6 +53,11 @@ class Entity
             _position.Y = y;
         }
 
+        Symbol GetSymbol()
+        {
+            return _symbol;
+        }
+
         void DrawToConsole()
         {
             TCODConsole::root->putChar(_position.X,_position.Y,_symbol.Char);

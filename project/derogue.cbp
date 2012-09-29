@@ -49,6 +49,7 @@
 		<Unit filename="..\include\Components\InteractionComponent.hpp" />
 		<Unit filename="..\include\Components\ItemComponent.hpp" />
 		<Unit filename="..\include\Components\LightingComponent.hpp" />
+		<Unit filename="..\include\Components\LogComponent.hpp" />
 		<Unit filename="..\include\Components\MobComponent.hpp" />
 		<Unit filename="..\include\Components\PathfindingComponent.hpp" />
 		<Unit filename="..\include\Components\PlayerComponent.hpp" />

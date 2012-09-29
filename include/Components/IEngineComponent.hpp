@@ -1,7 +1,4 @@
 #pragma once
-#ifndef IENGINECOMPONENT_H
-#define IENGINECOMPONENT_H
-
 #include "libtcod.hpp"
 
 namespace derogue {
@@ -15,5 +12,3 @@ public:
 };
 
 }
-
-#endif

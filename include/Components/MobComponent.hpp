@@ -13,7 +13,7 @@ class MobComponent : public IEngineComponent{
         Entity * _player;
         PathfindingComponent * _pathFinding;
 
-        std::vector<Entity*> _mobs;
+        CreatureList _mobs;
 
         float _timeSinceLastMobUpdate;
 
@@ -41,7 +41,7 @@ class MobComponent : public IEngineComponent{
             _timeSinceLastMobUpdate = 0;
         }
 
-        std::vector<Entity*>& GetMobs()
+        CreatureList& GetMobs()
         {
             return _mobs;
         }
@@ -52,7 +52,7 @@ class MobComponent : public IEngineComponent{
             _player = engine->GetComponent<PlayerComponent>()->GetPlayer();
             _pathFinding = engine->GetComponent<PathfindingComponent>();
 
-            _mobs.push_back(new Entity(1,1,'g'));
+            _mobs.push_back(new creatures::Creature(creatures::MT_GOBLIN));
         };
 
         virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse)

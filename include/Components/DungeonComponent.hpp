@@ -1,7 +1,4 @@
 #pragma once
-#ifndef DUNGEONCOMPONENT_H
-#define DUNGEONCOMPONENT_H
-
 #include "DungeonGenerators/BasicRoomGenerator.hpp"
 #include "DungeonGenerators/HallGenerator.hpp"
 #include "IEngineComponent.hpp"
@@ -50,5 +47,3 @@ public:
 };
 
 } //end namespace derogue
-
-#endif

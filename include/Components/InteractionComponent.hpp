@@ -1,11 +1,8 @@
 #pragma once
-
-#include "IEngineComponent.hpp"
 #include "PlayerComponent.hpp"
 #include "MobComponent.hpp"
 #include "ItemComponent.hpp"
 #include "WorldComponent.hpp"
-
 
 namespace derogue
 {
@@ -15,6 +12,7 @@ class InteractionComponent : public IEngineComponent
 private:
     TCODMap* _map;
     Entity* _player;
+    CreatureList _mobs;
 
     void InteractWithWall(int x, int y)
     {
@@ -23,13 +21,24 @@ private:
 
     void InteractWithMob(int x, int y)
     {
-        TCODConsole::root->print(0,60, "walked into a mob at x: %d y: %d.",x,y);
+        auto mob = filter(_mobs,[x,y](Entity* mob){
+               auto pos = mob->GetPosition();
+               return pos.X == x && pos.Y == y;
+        });
+
+        if(mob)
+        {
+            TCODConsole::root->print(0,60, "walked into mob named %c", mob->GetSymbol().Char);
+            TCODConsole::root->print(0,61, "walked into a mob at x: %d y: %d.",x,y);
+        }
+
     }
 
 public:
     virtual void Init(Engine* engine) {
         _map = engine->GetComponent<WorldComponent>()->GetMap();
         _player = engine->GetComponent<PlayerComponent>()->GetPlayer();
+        _mobs = engine->GetComponent<MobComponent>()->GetMobs();
     };
 
     virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse) {
@@ -58,9 +67,7 @@ public:
                 default: InteractWithMob(x,y);
             }
         }
-
     }
-
 };
 
 } //end namespace derogue

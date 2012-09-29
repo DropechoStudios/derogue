@@ -1,7 +1,4 @@
 #pragma once
-#ifndef ITEMCOMPONENT_H
-#define ITEMCOMPONENT_H
-
 #include "libtcod.hpp"
 #include "Components/DungeonComponent.hpp"
 #include "DungeonGenerators/ItemGenerator.hpp"
@@ -25,5 +22,3 @@ public:
 };
 
 } //end namespace derogue
-
-#endif

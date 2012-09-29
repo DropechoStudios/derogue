@@ -1,9 +1,9 @@
 #pragma once
-#ifndef DEFINES_H
-#define DEFINES_H
 
 #include <cstdio>
 #include "libtcod.hpp"
+#include <vector>
+#include "Entities/Creatures/Creature.hpp"
 
 namespace derogue {
 
@@ -26,12 +26,9 @@ const int LightDistance = 10;
 
 const TCOD_event_t eventType = (TCOD_event_t)(TCOD_KEY_PRESSED|TCOD_EVENT_MOUSE);
 
-struct Player {
-    int X;
-    int Y;
-};
+typedef std::vector<creatures::Creature *> CreatureList;
 
 
 } //end namespace derogue
 
-#endif
+
