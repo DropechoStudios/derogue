@@ -3,6 +3,7 @@
 #include "MobComponent.hpp"
 #include "ItemComponent.hpp"
 #include "WorldComponent.hpp"
+#include "LogComponent.hpp"
 
 namespace derogue
 {
@@ -13,10 +14,15 @@ private:
     TCODMap* _map;
     Entity* _player;
     CreatureList _mobs;
+    LogComponent* _logger;
 
     void InteractWithWall(int x, int y)
     {
-        TCODConsole::root->print(0,60, "walked into a wall at x: %d y: %d.",x,y);
+
+        std::string line = "walked into a wall at x: ";
+        line += x + " y: " + y;
+        _logger->Log(line.c_str());
+        //TCODConsole::root->print(0,60, "walked into a wall at x: %d y: %d.",x,y);
     }
 
     void InteractWithMob(int x, int y)
@@ -39,6 +45,7 @@ public:
         _map = engine->GetComponent<WorldComponent>()->GetMap();
         _player = engine->GetComponent<PlayerComponent>()->GetPlayer();
         _mobs = engine->GetComponent<MobComponent>()->GetMobs();
+        _logger = engine->GetComponent<LogComponent>();
     };
 
     virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse) {
