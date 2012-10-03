@@ -1,41 +1,61 @@
 #pragma once
 #include "IEngineComponent.hpp"
 #include <queue>
-
+#include <string>
+#include <sstream>
 namespace derogue{
 
 class LogComponent : public IEngineComponent
 {
 private:
-    std::deque<char*> _logLines;
+    std::deque<std::string> _logLines;
+    std::ostringstream  _currentLinePart;
 
 public:
     virtual void Init(Engine* engine){};
     virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse)
     {
-        for(auto i = 0; i < _logLines.size(); ++i)
+        for(int i = 0; i < _logLines.size(); ++i)
         {
-            TCODConsole::root->print(0,60 + i, _logLines[i]);
+
+            TCODConsole::root->print(0,60 + i,_logLines[i].c_str());
         }
     }
 
-    void Log(const char* logLine)
+    void Log(std::string logLine)
     {
-        if(_logLines.size() > 10)
-        {
-            _logLines.pop_back();
-        }
-        _logLines.push_front(const_cast<char *>(logLine));
-    }
-
-    void Log(char* logLine)
-    {
-        if(_logLines.size() > 10)
+        if(19 < _logLines.size())
         {
             _logLines.pop_back();
         }
         _logLines.push_front(logLine);
+        _currentLinePart.str("");
     }
+
+    LogComponent* AppendLogPart(char* linePart)
+    {
+        _currentLinePart << linePart;
+        return this;
+    }
+
+    LogComponent* AppendLogPart(int linePart)
+    {
+        _currentLinePart << linePart;
+        return this;
+    }
+
+    LogComponent* AppendLogPart(float linePart)
+    {
+        _currentLinePart << linePart;
+        return this;
+    }
+
+    void CloseLogPart()
+    {
+        _currentLinePart << std::endl;
+        Log(_currentLinePart.str());
+    }
+
 };
 
 } //end namespace derogue

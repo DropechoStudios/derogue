@@ -18,11 +18,10 @@ private:
 
     void InteractWithWall(int x, int y)
     {
-
-        std::string line = "walked into a wall at x: ";
-        line += x + " y: " + y;
-        _logger->Log(line.c_str());
-        //TCODConsole::root->print(0,60, "walked into a wall at x: %d y: %d.",x,y);
+        _logger
+            ->AppendLogPart("walked into a wall at x: ")->AppendLogPart(x)
+            ->AppendLogPart(" y: ")->AppendLogPart(y)
+            ->CloseLogPart();
     }
 
     void InteractWithMob(int x, int y)
@@ -34,8 +33,14 @@ private:
 
         if(mob)
         {
-            TCODConsole::root->print(0,60, "walked into mob named %c", mob->GetSymbol().Char);
-            TCODConsole::root->print(0,61, "walked into a mob at x: %d y: %d.",x,y);
+            _logger
+                ->AppendLogPart("walked into mob named ")->AppendLogPart(mob->GetSymbol().Char)
+                ->CloseLogPart();
+
+            _logger
+                ->AppendLogPart("walked into a mob at x: ")->AppendLogPart(x)
+                ->AppendLogPart(" y: ")->AppendLogPart(y)
+                ->CloseLogPart();
         }
 
     }
