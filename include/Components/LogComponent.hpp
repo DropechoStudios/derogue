@@ -32,7 +32,7 @@ public:
         _currentLinePart.str("");
     }
 
-    LogComponent* AppendLogPart(char* linePart)
+    LogComponent* AppendLogPart(const char* linePart)
     {
         _currentLinePart << linePart;
         return this;
@@ -45,6 +45,12 @@ public:
     }
 
     LogComponent* AppendLogPart(float linePart)
+    {
+        _currentLinePart << linePart;
+        return this;
+    }
+
+    LogComponent* AppendLogPart(char linePart)
     {
         _currentLinePart << linePart;
         return this;
