@@ -10,76 +10,21 @@ namespace derogue
 
 class InteractionComponent : public IEngineComponent
 {
+public:
+    virtual void Init(Engine* engine);
+    virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse);
+    void TryInteract(int x, int y);
+
 private:
     TCODMap* _map;
     Entity* _player;
     CreatureList _mobs;
     LogComponent* _logger;
+    ItemComponent* _items;
 
-    void InteractWithWall(int x, int y)
-    {
-        _logger
-            ->AppendLogPart("walked into a wall at x: ")->AppendLogPart(x)
-            ->AppendLogPart(" y: ")->AppendLogPart(y)
-            ->CloseLogPart();
-    }
-
-    void InteractWithMob(int x, int y)
-    {
-        auto mob = filter(_mobs,[x,y](Entity* mob){
-               auto pos = mob->GetPosition();
-               return pos.X == x && pos.Y == y;
-        });
-
-        if(mob)
-        {
-            _logger
-                ->AppendLogPart("walked into mob named ")->AppendLogPart(mob->GetSymbol().Char)
-                ->CloseLogPart();
-
-            _logger
-                ->AppendLogPart("walked into a mob at x: ")->AppendLogPart(x)
-                ->AppendLogPart(" y: ")->AppendLogPart(y)
-                ->CloseLogPart();
-        }
-
-    }
-
-public:
-    virtual void Init(Engine* engine) {
-        _map = engine->GetComponent<WorldComponent>()->GetMap();
-        _player = engine->GetComponent<PlayerComponent>()->GetPlayer();
-        _mobs = engine->GetComponent<MobComponent>()->GetMobs();
-        _logger = engine->GetComponent<LogComponent>();
-    };
-
-    virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse) {
-        auto playerPos = _player->GetPosition();
-
-        switch(key->c){
-            case 'W':  case 'w': TryInteract(playerPos.X, playerPos.Y - 1); break; // up
-            case 'A':  case 'a': TryInteract(playerPos.X - 1, playerPos.Y); break; // left
-            case 'S':  case 's': TryInteract(playerPos.X, playerPos.Y + 1); break; // down
-            case 'D':  case 'd': TryInteract(playerPos.X + 1, playerPos.Y); break; // right
-        }
-    };
-
-    void TryInteract(int x, int y)
-    {
-        if(_map->isWalkable(x,y))
-        {
-
-        }
-        else
-        {
-            auto effectedThing = TCODConsole::root->getChar(x,y);
-            switch(effectedThing)
-            {
-                case ' ': InteractWithWall(x,y);  break;
-                default: InteractWithMob(x,y);
-            }
-        }
-    }
+    void InteractWithWall(int x, int y);
+    void InteractWithMob(int x, int y);
+    void InteractWithItem(int x, int y);
 };
 
 } //end namespace derogue

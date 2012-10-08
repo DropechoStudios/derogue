@@ -13,7 +13,7 @@ enum WeaponType
     WT_COUNT //convenice for rand mod against
 };
 
-std::map<WeaponType,char> WeaponTypesToSymbols = {
+static std::map<WeaponType,char> WeaponTypesToSymbols = {
     {WT_STICK,  '|'},
     {WT_DAGGER, ';'},
     {WT_SWORD,  't'},

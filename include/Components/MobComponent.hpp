@@ -52,7 +52,7 @@ class MobComponent : public IEngineComponent{
             _player = engine->GetComponent<PlayerComponent>()->GetPlayer();
             _pathFinding = engine->GetComponent<PathfindingComponent>();
 
-            _mobs.push_back(new creatures::Creature(creatures::MT_GOBLIN));
+            _mobs.push_back(new creatures::Monster(creatures::MT_GOBLIN));
         };
 
         virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse)

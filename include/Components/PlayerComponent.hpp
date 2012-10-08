@@ -34,25 +34,8 @@ public:
     };
 
     virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse) {
-        auto playerPos = _player->GetPosition();
-
-        switch(key->c){
-            case 'W':  case 'w': TryWalk(playerPos.X, playerPos.Y - 1); break; // up
-            case 'A':  case 'a': TryWalk(playerPos.X - 1, playerPos.Y); break; // left
-            case 'S':  case 's': TryWalk(playerPos.X, playerPos.Y + 1); break; // down
-            case 'D':  case 'd': TryWalk(playerPos.X + 1, playerPos.Y); break; // right
-        }
-
         _player->DrawToConsole();
     };
-
-    void TryWalk(int x, int y)
-    {
-        if(_map->isWalkable(x,y))
-        {
-            _player->SetPosition(Position2d(x,y));
-        }
-    }
 };
 
 } //end namespace derogue

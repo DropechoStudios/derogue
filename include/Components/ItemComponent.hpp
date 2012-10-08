@@ -19,6 +19,14 @@ public:
     {
         for_each(_items,[](Entity* entity){ entity->DrawToConsole(); });
     };
+
+    virtual Entity* GetItemAt(int x, int y)
+    {
+        return filter(_items,[x,y](Entity* item){
+           auto pos = item->GetPosition();
+           return pos.X == x && pos.Y == y;
+        });
+    }
 };
 
 } //end namespace derogue

@@ -15,16 +15,15 @@ public:
     virtual void Init(Engine* engine){};
     virtual void Run(TCOD_key_t *key,TCOD_mouse_t *mouse)
     {
-        for(int i = 0; i < _logLines.size(); ++i)
+        for(auto i = 0u; i < _logLines.size(); ++i)
         {
-
             TCODConsole::root->print(0,60 + i,_logLines[i].c_str());
         }
     }
 
     void Log(std::string logLine)
     {
-        if(19 < _logLines.size())
+        if(19u < _logLines.size())
         {
             _logLines.pop_back();
         }
