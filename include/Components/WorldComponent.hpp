@@ -16,7 +16,7 @@ class WorldComponent : public IEngineComponent
     public:
         WorldComponent()
         {
-            _map = new TCODMap(DUNGEON_X,DUNGEON_Y);
+            _map = new TCODMap(80,60);
         }
 
         virtual void Init(Engine* engine){};

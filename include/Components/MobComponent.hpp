@@ -61,7 +61,7 @@ class MobComponent : public IEngineComponent{
 
             if(_timeSinceLastMobUpdate > 1) // if > 1 second has elapsed, update path
             {
-                for_each(_mobs,[_player,this](Entity* mob){PathToOtherMob(mob,_player); });
+                for_each(_mobs,[this](Entity* mob){PathToOtherMob(mob,this->_player); });
                 _timeSinceLastMobUpdate = 0;
             }
 

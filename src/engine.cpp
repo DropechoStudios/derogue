@@ -20,7 +20,7 @@ void Engine::Run()
         if(TCODConsole::isKeyPressed(TCODK_ESCAPE)) { return; }
 
         TCODConsole::root->clear();
-            for_each(_components,[&_key,&_mouse](IEngineComponent* comp){ comp->Run(&_key,&_mouse); });
+            for_each(_components,[this](IEngineComponent* comp){ comp->Run(&this->_key,&this->_mouse); });
         TCODConsole::flush();
     }
 }

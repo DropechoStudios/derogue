@@ -37,7 +37,7 @@
 /* os identification
    TCOD_WINDOWS : OS is windows
    TCOD_LINUX : OS is Linux
-   TCOD_MACOSX : OS is Mac OS X 
+   TCOD_MACOSX : OS is Mac OS X
    TCOD_HAIKU : OS is Haiku */
 
 /* compiler identification
@@ -102,7 +102,7 @@
 /* This is a hack. SDL by default want you to rename your main statement, and insert it's own first
    It does that to handle some init code. However, libtcod handles that for you. If we did this
    wrappers like libtcod-net would be hosed, since there is no main statement there. */
-#ifdef TCOD_MACOSX 
+#ifdef TCOD_MACOSX
 #define _SDL_main_h
 #include "SDL/SDL.h"
 #endif
@@ -135,15 +135,15 @@ typedef uint8 bool;
 #endif
 
 /* DLL export */
-#ifdef TCOD_WINDOWS
+/*#ifdef TCOD_WINDOWS
 #ifdef LIBTCOD_EXPORTS
 #define TCODLIB_API __declspec(dllexport)
 #else
 #define TCODLIB_API __declspec(dllimport)
 #endif
-#else
+#else*/
 #define TCODLIB_API
-#endif
+/*#endif*/
 
 #ifdef __cplusplus
 extern "C" {
